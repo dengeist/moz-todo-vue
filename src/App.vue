@@ -5,7 +5,7 @@
     <h2 id="list-summary">{{ listHeadingText }}</h2>
     <ul aria-labelledby="list-summary">
       <li v-for="item in ToDoItems" :key="item.id">
-        <to-do-item v-bind="item" />
+        <to-do-item v-bind="item" @toggle-checkbox="toggleTodoCompleted" />
       </li>
     </ul>
   </div>
@@ -61,6 +61,10 @@ export default {
         completed: false
       };
       this.ToDoItems.push(newTodo);
+    },
+    toggleTodoCompleted(id) {
+      const updatedItem = this.ToDoItems.find(item => item.id === id);
+      updatedItem.completed = !updatedItem.completed;
     }
   }
 };

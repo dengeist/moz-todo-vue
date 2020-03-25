@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="c-cb">
-      <input type="checkbox" :id="id" :checked="isCompleted" />
+      <input
+        type="checkbox"
+        :id="id"
+        :checked="isCompleted"
+        @change="$emit('toggle-checkbox', id)"
+      />
       <label :for="id">{{ name }}</label>
     </div>
   </div>
