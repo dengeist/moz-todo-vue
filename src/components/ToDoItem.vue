@@ -1,7 +1,9 @@
 <template>
   <div>
-    <input type="checkbox" id="todo-item" :checked="isCompleted" />
-    <label for="todo-item">{{ name }}</label>
+    <div class="c-cb">
+      <input type="checkbox" id="todo-item" :checked="isCompleted" />
+      <label for="todo-item">{{ name }}</label>
+    </div>
   </div>
 </template>
 
