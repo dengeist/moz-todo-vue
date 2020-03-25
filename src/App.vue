@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>TodoMatic</h1>
-    <to-do-form />
+    <to-do-form @add-todo="addTodo" />
     <ul>
       <li v-for="item in ToDoItems" :key="item.id">
         <to-do-item v-bind="item" />
@@ -41,6 +41,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    addTodo(name) {
+      console.log("Added", name);
+    }
   }
 };
 </script>
