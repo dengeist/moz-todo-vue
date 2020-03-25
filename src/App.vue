@@ -11,8 +11,11 @@
 </template>
 
 <script>
+import nanoid from "nanoid";
 import ToDoForm from "./components/ToDoForm";
 import ToDoItem from "./components/ToDoItem";
+
+console.dir(nanoid);
 
 export default {
   name: "App",
@@ -44,7 +47,12 @@ export default {
   },
   methods: {
     addTodo(name) {
-      console.log("Added", name);
+      const newTodo = {
+        name,
+        id: "todo-",
+        completed: false
+      };
+      this.ToDoItems.push(newTodo);
     }
   }
 };

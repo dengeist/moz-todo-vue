@@ -16,9 +16,6 @@
   </form>
 </template>
 <script>
-function onSubmit() {
-  this.$emit("add-todo", this.name);
-}
 export default {
   name: "ToDoForm",
   data() {
@@ -27,7 +24,13 @@ export default {
     };
   },
   methods: {
-    onSubmit
+    onSubmit() {
+      if (this.name === "") {
+        return;
+      }
+      this.$emit("add-todo", this.name);
+      this.name = "";
+    }
   }
 };
 </script>
