@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>TodoMatic</h1>
+    <to-do-form />
+    <ul>
+      <li v-for="item in ToDoItems" :key="item.id">
+        <to-do-item v-bind="item" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ToDoForm from "./components/ToDoForm";
+import ToDoItem from "./components/ToDoItem";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    ToDoItem,
+    ToDoForm
+  },
+  data() {
+    return {
+      ToDoItems: [
+        {
+          id: "todo-0",
+          name: "Learn Vue",
+          completed: false
+        },
+        {
+          id: "todo-1",
+          name: "Create a Vue project with the CLI",
+          completed: true
+        },
+        { id: "todo-2", name: "Have fun", completed: true },
+        {
+          id: "todo-3",
+          name: "Create a to-do list",
+          completed: false
+        }
+      ]
+    };
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
