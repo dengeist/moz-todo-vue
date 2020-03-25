@@ -2,7 +2,8 @@
   <div id="app" class="todoapp">
     <h1>TodoMatic</h1>
     <to-do-form @add-todo="addTodo" />
-    <ul>
+    <h2 id="list-summary">{{ listHeadingText }}</h2>
+    <ul aria-labelledby="list-summary">
       <li v-for="item in ToDoItems" :key="item.id">
         <to-do-item v-bind="item" />
       </li>
@@ -14,8 +15,6 @@
 import nanoid from "nanoid";
 import ToDoForm from "./components/ToDoForm";
 import ToDoItem from "./components/ToDoItem";
-
-console.dir(nanoid);
 
 export default {
   name: "App",
@@ -45,11 +44,20 @@ export default {
       ]
     };
   },
+  computed: {
+    listHeadingText() {
+      const completedItemsLength = this.ToDoItems.filter(
+        item => !item.completed
+      ).length;
+      const noun = completedItemsLength !== 1 ? "items" : "item";
+      return completedItemsLength + ` ${noun} remaining`;
+    }
+  },
   methods: {
     addTodo(name) {
       const newTodo = {
         name,
-        id: "todo-",
+        id: "todo-" + nanoid(),
         completed: false
       };
       this.ToDoItems.push(newTodo);
