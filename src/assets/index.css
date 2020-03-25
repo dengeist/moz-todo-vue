@@ -165,9 +165,9 @@ body {
   max-width: 100%;
 }
 
-.todoapp h1 {
+.todoapp > h1 {
   display: block;
-  width: 100%;
+  max-width: 100%;
   text-align: center;
   margin: 0;
   margin-bottom: 1rem;

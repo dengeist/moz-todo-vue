@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="todoapp">
     <h1>TodoMatic</h1>
     <to-do-form @add-todo="addTodo" />
     <ul>
