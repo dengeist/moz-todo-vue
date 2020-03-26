@@ -5,7 +5,7 @@
         type="checkbox"
         :id="id"
         :checked="isCompleted"
-        @change="$emit('toggle-checkbox', id)"
+        @change="$emit('toggle-todo', id)"
       />
       <label :for="id">{{ name }}</label>
     </div>

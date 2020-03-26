@@ -2,17 +2,17 @@
   <div id="app" class="todoapp">
     <h1>TodoMatic</h1>
     <to-do-form @add-todo="addTodo" />
-    <h2 id="list-summary" tabindex="-1" ref="listHeading">
+    <h2 id="list-summary" ref="listHeading">
       {{ listHeadingText }}
     </h2>
     <ul
       aria-labelledby="list-summary"
       class="todo-list stack-large stack-exception"
     >
-      <li v-for="item in ToDoItems" :key="item.id" class="todo">
+      <li v-for="item in tasks" :key="item.id" class="todo">
         <to-do-item
           v-bind="item"
-          @toggle-checkbox="toggleTodoCompleted"
+          @toggle-todo="toggleTodoCompleted"
           @delete-todo="deleteTodo"
         />
       </li>
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      ToDoItems: [
+      tasks: [
         {
           id: "todo-0",
           name: "Learn Vue",
@@ -55,9 +55,8 @@ export default {
   },
   computed: {
     listHeadingText() {
-      const completedItemsLength = this.ToDoItems.filter(
-        item => !item.completed
-      ).length;
+      const completedItemsLength = this.tasks.filter(item => !item.completed)
+        .length;
       const noun = completedItemsLength !== 1 ? "items" : "item";
       return completedItemsLength + ` ${noun} remaining`;
     }
@@ -69,20 +68,26 @@ export default {
         id: "todo-" + nanoid(),
         completed: false
       };
-      this.ToDoItems = [...this.ToDoItems, newTodo];
+      this.tasks = [...this.tasks, newTodo];
     },
     toggleTodoCompleted(id) {
-      const updatedItems = this.ToDoItems.map(item => {
+      const updatedItems = this.tasks.map(item => {
         if (item.id === id) {
           item.completed = !item.completed;
         }
         return item;
       });
-      this.ToDoItems = updatedItems;
+      this.tasks = updatedItems;
     },
     deleteTodo(id) {
-      this.ToDoItems = this.ToDoItems.filter(t => t.id !== id);
-      this.$refs.listHeading.focus();
+      this.tasks = this.tasks.filter(t => t.id !== id);
+      this.focusListHeading();
+    },
+    focusListHeading() {
+      const el = this.$refs.listHeading;
+      el.setAttribute("tabindex", "-1");
+      el.focus();
+      el.removeAttribute("tabindex");
     }
   }
 };
