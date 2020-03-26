@@ -8,7 +8,11 @@
       class="todo-list stack-large stack-exception"
     >
       <li v-for="item in ToDoItems" :key="item.id" class="todo">
-        <to-do-item v-bind="item" @toggle-checkbox="toggleTodoCompleted" />
+        <to-do-item
+          v-bind="item"
+          @toggle-checkbox="toggleTodoCompleted"
+          @delete-todo="deleteTodo"
+        />
       </li>
     </ul>
   </div>
@@ -68,6 +72,9 @@ export default {
     toggleTodoCompleted(id) {
       const updatedItem = this.ToDoItems.find(item => item.id === id);
       updatedItem.completed = !updatedItem.completed;
+    },
+    deleteTodo(id) {
+      this.ToDoItems = this.ToDoItems.filter(t => t.id !== id);
     }
   }
 };

@@ -19,7 +19,11 @@
         <span>Edit </span>
         <span class="visually-hidden">{{ name }}</span>
       </button>
-      <button type="button" class="btn btn__danger">
+      <button
+        type="button"
+        class="btn btn__danger"
+        @click="$emit('delete-todo', id)"
+      >
         <span>Delete </span>
         <span class="visually-hidden">{{ name }}</span>
       </button>
@@ -68,6 +72,9 @@ export default {
         this.$refs.focusTarget.focus();
       });
     }
+  },
+  updated() {
+    console.log(this.$props.name + " updated");
   }
 };
 </script>
