@@ -33,15 +33,10 @@
   <form class="todo stack-small" v-else>
     <div class="form-group">
       <label class="todo-label" :for="id">New name for {{ name }}</label>
-      <input :id="id" class="todo-text" type="text" />
+      <input :id="id" class="todo-text" type="text" ref="focusTarget" />
     </div>
     <div class="btn-group">
-      <button
-        type="button"
-        class="btn todo-cancel"
-        @click="isEditing = false"
-        ref="focusTarget"
-      >
+      <button type="button" class="btn todo-cancel" @click="isEditing = false">
         <span>Cancel </span>
         <span class="visually-hidden">renaming {{ name }}</span>
       </button>
@@ -72,9 +67,6 @@ export default {
         this.$refs.focusTarget.focus();
       });
     }
-  },
-  updated() {
-    console.log(this.$props.name + " updated");
   }
 };
 </script>
