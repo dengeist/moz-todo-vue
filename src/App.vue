@@ -3,8 +3,11 @@
     <h1>TodoMatic</h1>
     <to-do-form @add-todo="addTodo" />
     <h2 id="list-summary">{{ listHeadingText }}</h2>
-    <ul aria-labelledby="list-summary">
-      <li v-for="item in ToDoItems" :key="item.id">
+    <ul
+      aria-labelledby="list-summary"
+      class="todo-list stack-large stack-exception"
+    >
+      <li v-for="item in ToDoItems" :key="item.id" class="todo">
         <to-do-item v-bind="item" @toggle-checkbox="toggleTodoCompleted" />
       </li>
     </ul>
