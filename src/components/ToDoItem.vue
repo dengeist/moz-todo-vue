@@ -1,5 +1,5 @@
 <template>
-  <div class="stack-small" v-if="!isEditing">
+  <div class="todo stack-small" v-if="!isEditing">
     <div class="c-cb">
       <input
         type="checkbox"
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <form class="stack-small" v-else>
+  <form class="todo stack-small" v-else>
     <div class="form-group">
       <label class="todo-label" :for="id">New name for {{ name }}</label>
       <input :id="id" class="todo-text" type="text" />

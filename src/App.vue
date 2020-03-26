@@ -9,7 +9,7 @@
       aria-labelledby="list-summary"
       class="todo-list stack-large stack-exception"
     >
-      <li v-for="item in tasks" :key="item.id" class="todo">
+      <li v-for="item in tasks" :key="item.id">
         <to-do-item
           v-bind="item"
           @toggle-todo="toggleTodoCompleted"

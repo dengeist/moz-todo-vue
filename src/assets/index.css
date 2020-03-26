@@ -112,10 +112,6 @@ body {
   border-color: lightgrey;
 }
 
-.btn__danger:focus {
-  outline-color: #c82333;
-}
-
 .btn__primary {
   color: #fff;
   background-color: #000;
@@ -213,20 +209,14 @@ body {
 
 /* Todo item styles */
 
-.todo,
-.todo.editing > form {
+.todo {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.todo > *,
-.todo.editing > form > * {
+.todo > * {
   flex: 0 0 100%;
-}
-
-.todo.editing > form > * + * {
-  margin-top: 1.4rem;
 }
 
 .todo-text {
