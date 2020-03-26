@@ -10,7 +10,7 @@
       <label :for="id">{{ name }}</label>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn">
+      <button type="button" class="btn" @click="isEditing = true">
         <span>Edit </span>
         <span class="visually-hidden">{{ name }}</span>
       </button>
@@ -27,7 +27,7 @@
       <input :id="id" class="todo-text" type="text" />
     </div>
     <div class="btn-group">
-      <button type="button" class="btn todo-cancel">
+      <button type="button" class="btn todo-cancel" @click="isEditing = false">
         <span>Cancel</span>
         <span class="visually-hidden">renaming {{ name }}</span>
       </button>
