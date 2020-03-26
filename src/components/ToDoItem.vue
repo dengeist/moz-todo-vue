@@ -12,28 +12,28 @@
     <div class="btn-group">
       <button type="button" class="btn">
         <span>Edit </span>
-        <span class="visually-hidden">Eat</span>
+        <span class="visually-hidden">{{ name }}</span>
       </button>
       <button type="button" class="btn btn__danger">
         <span>Delete </span>
-        <span class="visually-hidden">Eat</span>
+        <span class="visually-hidden">{{ name }}</span>
       </button>
     </div>
   </div>
 
   <form class="stack-small" v-else>
     <div class="form-group">
-      <label class="todo-label" for="task-0">New name for Eat</label>
-      <input id="task-0" class="todo-text" type="text" />
+      <label class="todo-label" :for="id">New name for {{ name }}</label>
+      <input :id="id" class="todo-text" type="text" />
     </div>
     <div class="btn-group">
       <button type="button" class="btn todo-cancel">
         <span>Cancel</span>
-        <span class="visually-hidden">renaming Eat</span>
+        <span class="visually-hidden">renaming {{ name }}</span>
       </button>
       <button type="submit" class="btn btn__primary todo-edit">
         <span>Save </span>
-        <span class="visually-hidden">new name for Eat</span>
+        <span class="visually-hidden">new name for {{ name }}</span>
       </button>
     </div>
   </form>
