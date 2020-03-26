@@ -10,7 +10,12 @@
       <label :for="id">{{ name }}</label>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn" @click="isEditing = true">
+      <button
+        type="button"
+        class="btn"
+        @click="isEditing = true"
+        ref="focusTarget"
+      >
         <span>Edit </span>
         <span class="visually-hidden">{{ name }}</span>
       </button>
@@ -27,8 +32,13 @@
       <input :id="id" class="todo-text" type="text" />
     </div>
     <div class="btn-group">
-      <button type="button" class="btn todo-cancel" @click="isEditing = false">
-        <span>Cancel</span>
+      <button
+        type="button"
+        class="btn todo-cancel"
+        @click="isEditing = false"
+        ref="focusTarget"
+      >
+        <span>Cancel </span>
         <span class="visually-hidden">renaming {{ name }}</span>
       </button>
       <button type="submit" class="btn btn__primary todo-edit">
@@ -51,6 +61,13 @@ export default {
     id: { required: true, type: String },
     name: { required: true, type: String },
     completed: { default: false, type: Boolean }
+  },
+  watch: {
+    isEditing() {
+      this.$nextTick(() => {
+        this.$refs.focusTarget.focus();
+      });
+    }
   }
 };
 </script>
