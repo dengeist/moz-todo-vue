@@ -26,7 +26,8 @@
 export default {
   data() {
     return {
-      isCompleted: this.completed
+      isCompleted: this.completed,
+      isEditing: false
     };
   },
   props: {
