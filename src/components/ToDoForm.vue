@@ -12,6 +12,7 @@
       class="input__lg"
       autocomplete="off"
       v-model.lazy.trim="name"
+      ref="input"
     />
     <button type="submit" class="btn btn__primary btn__lg">
       Add
@@ -33,6 +34,9 @@ export default {
       }
       this.$emit("add-todo", this.name);
       this.name = "";
+    },
+    focus() {
+      this.$refs.input.focus();
     }
   }
 };

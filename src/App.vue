@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="todoapp">
     <h1>TodoMatic</h1>
-    <to-do-form @add-todo="addTodo" />
+    <to-do-form @add-todo="addTodo" ref="newTodoInput" />
     <h2 id="list-summary">{{ listHeadingText }}</h2>
     <ul
       aria-labelledby="list-summary"
@@ -75,6 +75,7 @@ export default {
     },
     deleteTodo(id) {
       this.ToDoItems = this.ToDoItems.filter(t => t.id !== id);
+      this.$refs.newTodoInput.focus();
     }
   }
 };
