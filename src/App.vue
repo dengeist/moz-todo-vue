@@ -16,6 +16,7 @@
           v-bind="item"
           @toggle-todo="toggleTodoCompleted"
           @delete-todo="deleteTodo"
+          @rename-todo="renameTodo"
         />
       </li>
     </ul>
@@ -85,6 +86,14 @@ export default {
       this.tasks = this.tasks.filter(t => t.id !== id);
       this.focusListHeading();
     },
+    renameTodo(id, name) {
+      this.tasks = this.tasks.map(item => {
+        if (item.id === id) {
+          item.name = name;
+        }
+        return item;
+      });
+    },
     focusListHeading() {
       const el = this.$refs.listHeading;
       el.setAttribute("tabindex", "-1");
@@ -94,5 +103,3 @@ export default {
   }
 };
 </script>
-
-<style></style>

@@ -30,10 +30,16 @@
     </div>
   </div>
 
-  <form class="todo stack-small" v-else>
+  <form class="todo stack-small" @submit.prevent="handleSubmit" v-else>
     <div class="form-group">
       <label class="todo-label" :for="id">New name for {{ name }}</label>
-      <input :id="id" class="todo-text" type="text" ref="focusTarget" />
+      <input
+        :id="id"
+        class="todo-text"
+        type="text"
+        v-model.lazy.trim="newName"
+        ref="focusTarget"
+      />
     </div>
     <div class="btn-group">
       <button type="button" class="btn todo-cancel" @click="isEditing = false">
@@ -53,13 +59,20 @@ export default {
   data() {
     return {
       isCompleted: this.completed,
-      isEditing: false
+      isEditing: false,
+      newName: ""
     };
   },
   props: {
     id: { required: true, type: String },
     name: { required: true, type: String },
     completed: { default: false, type: Boolean }
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit("rename-todo", this.id, this.newName);
+      this.isEditing = false;
+    }
   },
   watch: {
     isEditing() {
