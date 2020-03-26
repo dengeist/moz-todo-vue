@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="stack-small">
     <div class="c-cb">
       <input
         type="checkbox"
@@ -8,6 +8,16 @@
         @change="$emit('toggle-checkbox', id)"
       />
       <label :for="id">{{ name }}</label>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn">
+        <span>Edit </span>
+        <span class="visually-hidden">Eat</span>
+      </button>
+      <button type="button" class="btn btn__danger">
+        <span>Delete </span>
+        <span class="visually-hidden">Eat</span>
+      </button>
     </div>
   </div>
 </template>
