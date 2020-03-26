@@ -5,7 +5,9 @@
     <h2 id="list-summary" ref="listHeading">
       {{ listHeadingText }}
     </h2>
+    <p v-if="tasks.length === 0">Use the form to add some tasks!</p>
     <ul
+      v-else
       aria-labelledby="list-summary"
       class="todo-list stack-large stack-exception"
     >
