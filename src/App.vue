@@ -1,8 +1,10 @@
 <template>
   <div id="app" class="todoapp">
     <h1>TodoMatic</h1>
-    <to-do-form @add-todo="addTodo" ref="newTodoInput" />
-    <h2 id="list-summary">{{ listHeadingText }}</h2>
+    <to-do-form @add-todo="addTodo" />
+    <h2 id="list-summary" tabindex="-1" ref="listHeading">
+      {{ listHeadingText }}
+    </h2>
     <ul
       aria-labelledby="list-summary"
       class="todo-list stack-large stack-exception"
@@ -67,15 +69,20 @@ export default {
         id: "todo-" + nanoid(),
         completed: false
       };
-      this.ToDoItems.push(newTodo);
+      this.ToDoItems = [...this.ToDoItems, newTodo];
     },
     toggleTodoCompleted(id) {
-      const updatedItem = this.ToDoItems.find(item => item.id === id);
-      updatedItem.completed = !updatedItem.completed;
+      const updatedItems = this.ToDoItems.map(item => {
+        if (item.id === id) {
+          item.completed = !item.completed;
+        }
+        return item;
+      });
+      this.ToDoItems = updatedItems;
     },
     deleteTodo(id) {
       this.ToDoItems = this.ToDoItems.filter(t => t.id !== id);
-      this.$refs.newTodoInput.focus();
+      this.$refs.listHeading.focus();
     }
   }
 };
